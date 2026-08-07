@@ -32,13 +32,3 @@ ieee-smec/dist-ssr/
 *.njsproj
 *.sln
 *.sw?
-
-# Ignore images in public image directories, keeping folder structure
-ieee-smec/public/Event images/*
-!ieee-smec/public/Event images/.gitkeep
-
-ieee-smec/public/Gallery images/*
-!ieee-smec/public/Gallery images/.gitkeep
-
-ieee-smec/public/Team images/*
-!ieee-smec/public/Team images/.gitkeep

@@ -11,16 +11,6 @@ node_modules
 dist
 dist-ssr
 
-# Ignore images in public image directories, keeping folder structure
-/public/Event images/*
-!/public/Event images/.gitkeep
-
-/public/Gallery images/*
-!/public/Gallery images/.gitkeep
-
-/public/Team images/*
-!/public/Team images/.gitkeep
-
 # Editor directories and files
 .env
 .env.local

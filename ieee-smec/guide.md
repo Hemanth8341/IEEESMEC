@@ -20,16 +20,27 @@ This is the easiest method and enables **automatic deployments** whenever you pu
 ### Step 1: Connect your Git Repository
 1. Log in to the [Vercel Dashboard](https://vercel.com/dashboard).
 2. Click the **"Add New..."** button in the top right corner and select **"Project"**.
-3. Under the **"Import Git Repository"** section, select your Git provider and search for your `ieee-web` repository.
+3. Under the **"Import Git Repository"** section, select your Git provider and search for your **`IEEESMEC`** repository.
 4. Click **"Import"** next to the repository.
 
 ### Step 2: Configure Project Settings
-Vercel will automatically detect that the project is built with **Vite** and configure the settings for you.
-Double-check that the settings match the following:
-- **Framework Preset**: `Vite`
-- **Root Directory**: `./` (or the folder containing `package.json` if it's in a subdirectory like `ieee-smec`)
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
+Because your React project code is inside the `ieee-smec` subdirectory, you must configure Vercel to point to this folder:
+
+1. **Root Directory**: Set this to **`ieee-smec`** (instead of `./`). 
+   * *When you set this to `ieee-smec`, Vercel automatically runs all install and build steps inside that subfolder.*
+2. **Framework Preset**: Verify it says `Vite`.
+3. **Build and Output Settings**:
+   - **Build Command**: `npm run build` (Default - Override: **OFF**)
+   - **Output Directory**: `dist` (Default - Override: **OFF**)
+   - **Install Command**: Leave this toggle **OFF** (Vercel will automatically run `npm install` inside the `ieee-smec` directory).
+
+> [!NOTE]
+> If you choose **not** to change the Root Directory setting (leaving it as `./`), you must toggle **ON** the custom overrides and set:
+> - **Build Command**: `npm --prefix ieee-smec run build`
+> - **Output Directory**: `ieee-smec/dist`
+> - **Install Command**: `npm --prefix ieee-smec install`
+> 
+> *It is highly recommended to just set the **Root Directory** to `ieee-smec` as it keeps configuration clean and simple!*
 
 ### Step 3: Add Environment Variables (Optional)
 If you are using EmailJS or external API keys, add them under the **Environment Variables** section:
