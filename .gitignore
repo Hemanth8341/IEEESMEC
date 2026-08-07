@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+
+# Cache directories
+.vite/
+.claude/
+
+# Subproject dependencies
+ieee-smec/node_modules/
+ieee-smec/dist/
+ieee-smec/dist-ssr/
+
+# Editor directories and files
+.env
+.env.local
+.env.*.local
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignore images in public image directories, keeping folder structure
+ieee-smec/public/Event images/*
+!ieee-smec/public/Event images/.gitkeep
+
+ieee-smec/public/Gallery images/*
+!ieee-smec/public/Gallery images/.gitkeep
+
+ieee-smec/public/Team images/*
+!ieee-smec/public/Team images/.gitkeep
