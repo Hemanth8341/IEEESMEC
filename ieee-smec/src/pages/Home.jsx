@@ -46,9 +46,9 @@ const features = [
 ]
 
 const stats = [
-  { value: '50+', label: 'Active Members' },
+  { value: '30+', label: 'Active Members' },
   { value: '2', label: 'Events & Workshops' },
-  { value: '3', label: 'Active Chapters' },
+  { value: '1', label: 'Active Chapters' },
   { value: 'Global', label: 'Professional Network' },
 ]
 
@@ -337,7 +337,7 @@ export default function Home() {
               differently, and building something meaningful, you won't want to miss it. But can you guess what it is ? 😉😁
               <br />
               <br />
-              Save the date — <strong className="font-semibold txt-primary">28 August 2026</strong>.
+              Save the date — <strong className="font-semibold txt-primary"> _,_ August 2026</strong>.
               <br />
               We'll reveal everything soon, along with registration details and we will update registration link further.
               </p>

@@ -21,14 +21,14 @@ const events = [
   },
   {
     id: 2,
-    title: 'Genesis: Ideathon 2026',
+    title: 'Genesis',
     month: 'AUG',
-    day: '28',
+    day: '_,_',
     date: '28th August 2026',
     time: '09:20 am — 4:00 pm',
     location: 'Sardar Vallabhbhai Patel Auditorium & Labs, SMEC',
     description:
-      'A premium hackathon and ideation challenge designed for engineering students to pitch innovative ideas and prototype projects that solve real-world problems. Great prizes and mentorship await!',
+  "Genesis 2026 is coming.\nWe could tell you what it's about... but where's the fun in that? 😉\nFor now, all we'll say is this: if you love coming up with ideas, solving real-world problems, and thinking outside the box, you won't want to miss it. Can you guess what's coming? 👀\nRegistrations will open soon — stay tuned!",
     image: '/Event images/Genesis.png',
   },
 ]
