@@ -23,7 +23,7 @@ const events = [
     id: 2,
     title: 'Genesis',
     month: 'AUG',
-    day: '_,_',
+    day: '',
     date: '28th August 2026',
     time: '09:20 am — 4:00 pm',
     location: 'Sardar Vallabhbhai Patel Auditorium & Labs, SMEC',

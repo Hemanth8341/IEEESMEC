@@ -337,7 +337,7 @@ export default function Home() {
               differently, and building something meaningful, you won't want to miss it. But can you guess what it is ? 😉😁
               <br />
               <br />
-              Save the date — <strong className="font-semibold txt-primary"> _,_ August 2026</strong>.
+              Save the date — <strong className="font-semibold txt-primary"> August 2026</strong>.
               <br />
               We'll reveal everything soon, along with registration details and we will update registration link further.
               </p>

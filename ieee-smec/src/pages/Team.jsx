@@ -140,29 +140,29 @@ function TeamGroupPhoto() {
   const [imgErr, setImgErr] = useState(false)
 
   return (
-    <section className="panel panel-pad">
-      <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start mb-10">
-        <div className="section-head">
+    <section className="panel px-6 sm:px-10 lg:px-14 py-6 sm:py-10 lg:py-14">
+      <div className="max-w-3xl mx-auto text-center mb-10 flex flex-col items-center">
+        <div className="section-head text-center flex flex-col items-center">
           <span className="type-eyebrow txt-muted">The people behind IEEE SMEC</span>
-          <h2 className="type-h2 txt-primary">One Vision. One Team</h2>
+          <h2 className="type-h2 txt-primary mt-1">One Vision. One Team.</h2>
         </div>
-        <p className="type-body txt-secondary md:pt-8">
+        <p className="type-body txt-secondary text-center mt-4 max-w-2xl">
           We built the IEEE Student Branch at St. Martin&rsquo;s Engineering College to simplify how students
           learn and develop technical competency, reduce academic limitations, and inspire real-world
           technology solutions that address humanity&rsquo;s needs.
         </p>
       </div>
 
-      <div className="media-frame group shadow-e2 min-h-[240px]">
+      <div className="mx-auto md:media-frame group md:shadow-e2 md:max-h-[65vh] md:max-w-max md:flex md:items-center md:justify-center md:bg-slate-50 md:dark:bg-slate-900/10">
         {!imgErr ? (
           <img
             src="/Team images/Full Team.png"
             alt="IEEE SMEC Student Branch Team"
             onError={() => setImgErr(true)}
-            className="w-full h-auto block transition-transform duration-700 ease-brand group-hover:scale-[1.02]"
+            className="w-full h-auto md:w-auto md:h-auto md:max-h-[65vh] md:object-contain rounded-card md:rounded-none transition-transform duration-700 ease-brand group-hover:scale-[1.025] shadow-e2 md:shadow-none border border-light-border dark:border-dark-border md:border-none"
           />
         ) : (
-          <div className="flex flex-col items-center justify-center gap-4 text-center px-6 py-20">
+          <div className="mx-6 sm:mx-0 flex flex-col items-center justify-center gap-4 text-center px-6 py-20 md:media-frame md:w-full md:bg-slate-50 md:dark:bg-slate-900/10">
             <span className="icon-tile w-14 h-14 rounded-pill icon-tile-brand">
               <Users className="w-6 h-6" />
             </span>
