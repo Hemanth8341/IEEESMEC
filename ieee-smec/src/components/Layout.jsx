@@ -12,6 +12,7 @@ const primaryLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Events', to: '/explore' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Blog', to: '/blog' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -72,7 +73,7 @@ export default function Layout({ children }) {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
                 <img src={isDark ? logoDark : logo} alt="IEEE SMEC Logo" className="h-7 w-auto" />
-                <span className="text-[11px] text-slate-500 dark:text-slate-450 font-semibold sm:border-l sm:border-slate-300 sm:dark:border-slate-700 sm:pl-3">
+                <span className="text-[11px] text-slate-500 dark:text-dark-text-muted font-semibold sm:border-l sm:border-slate-300 sm:dark:border-dark-border sm:pl-3">
                   © 2026 IEEE Student Branch – SMEC. All rights reserved.
                 </span>
               </div>
@@ -86,7 +87,7 @@ export default function Layout({ children }) {
                     target={href.startsWith('http') ? '_blank' : undefined}
                     rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     aria-label={label}
-                    className="p-2 text-slate-400 hover:text-brand-600 dark:text-slate-500 dark:hover:text-brand-300 transition-colors duration-200"
+                    className="p-2 text-slate-400 hover:text-brand-600 dark:text-dark-text-secondary dark:hover:text-brand-300 transition-colors duration-200"
                   >
                     <Icon size={16} />
                   </a>
@@ -95,7 +96,7 @@ export default function Layout({ children }) {
             </div>
 
             {/* Bottom Row: Inline Links */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/5 text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/5 text-[11px] text-slate-500 dark:text-dark-text-secondary font-semibold">
               {/* Left: Navigation links */}
               <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
                 {primaryLinks.map(({ label, to }) => (

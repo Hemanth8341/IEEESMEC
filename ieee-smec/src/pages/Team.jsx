@@ -71,9 +71,9 @@ function FacultyMemberCard({ name, designation, college, image }) {
   const imgSrc = image ? `/Team images/${image}` : `/Team images/${name}.png`
 
   return (
-    <div className="bg-[#F3F4F6] dark:bg-slate-800/40 rounded-[28px] border border-black/5 dark:border-slate-800/60 p-4 flex flex-col justify-between h-[420px] relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+    <div className="bg-[#F3F4F6] dark:bg-dark-surface-alt rounded-[28px] border border-black/5 dark:border-dark-border p-4 flex flex-col justify-between h-[420px] relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
       {/* Top Image Container */}
-      <div className="relative w-full h-[76%] rounded-2xl bg-white/50 dark:bg-slate-900/50 overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-[76%] rounded-2xl bg-white/50 dark:bg-dark-bg overflow-hidden flex items-center justify-center">
         {!imgErr ? (
           <img
             src={imgSrc}
@@ -82,7 +82,7 @@ function FacultyMemberCard({ name, designation, college, image }) {
             className="w-full h-full object-contain p-2"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center relative bg-gradient-to-br from-slate-100 to-sky-50 dark:from-slate-900 dark:to-indigo-950/20">
+          <div className="w-full h-full flex flex-col items-center justify-center relative bg-gradient-to-br from-slate-100 to-sky-50 dark:from-dark-bg dark:to-dark-surface">
             <span className="font-heading text-3xl font-bold text-slate-400 dark:text-slate-600 select-none">
               {initials}
             </span>
@@ -99,7 +99,7 @@ function FacultyMemberCard({ name, designation, college, image }) {
         <p className="text-xs sm:text-sm text-ieee-blue dark:text-blue-400 mt-1 uppercase font-bold tracking-widest leading-none truncate w-full whitespace-nowrap">
           {designation}
         </p>
-        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-semibold truncate w-full whitespace-nowrap">
+        <p className="text-[10px] text-slate-400 dark:text-dark-text-secondary mt-1 font-semibold truncate w-full whitespace-nowrap">
           {college}
         </p>
       </div>
@@ -113,9 +113,9 @@ function StudentMemberCard({ name, image }) {
   const imgSrc = image ? `/Team images/${image}` : `/Team images/${name}.png`
 
   return (
-    <div className="bg-[#F3F4F6] dark:bg-slate-800/40 rounded-[28px] border border-black/5 dark:border-slate-800/60 p-4 flex flex-col items-center justify-center h-[380px] relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+    <div className="bg-[#F3F4F6] dark:bg-dark-surface-alt rounded-[28px] border border-black/5 dark:border-dark-border p-4 flex flex-col items-center justify-center h-[380px] relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
       {/* Full Image Container */}
-      <div className="relative w-full h-full rounded-2xl bg-white/50 dark:bg-slate-900/50 overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full rounded-2xl bg-white/50 dark:bg-dark-bg overflow-hidden flex items-center justify-center">
         {!imgErr ? (
           <img
             src={imgSrc}
@@ -124,7 +124,7 @@ function StudentMemberCard({ name, image }) {
             className="w-full h-full object-contain p-2"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center relative bg-gradient-to-br from-slate-100 to-sky-50 dark:from-slate-900 dark:to-indigo-950/20">
+          <div className="w-full h-full flex flex-col items-center justify-center relative bg-gradient-to-br from-slate-100 to-sky-50 dark:from-dark-bg dark:to-dark-surface">
             <span className="font-heading text-3xl font-bold text-slate-400 dark:text-slate-600 select-none">
               {initials}
             </span>
@@ -153,7 +153,7 @@ function TeamGroupPhoto() {
         </p>
       </div>
 
-      <div className="mx-auto md:media-frame group md:shadow-e2 md:max-h-[65vh] md:max-w-max md:flex md:items-center md:justify-center md:bg-slate-50 md:dark:bg-slate-900/10">
+      <div className="mx-auto md:media-frame group md:shadow-e2 md:max-h-[65vh] md:max-w-max md:flex md:items-center md:justify-center md:bg-slate-50 md:dark:bg-dark-bg">
         {!imgErr ? (
           <img
             src="/Team images/Full Team.png"
@@ -162,7 +162,7 @@ function TeamGroupPhoto() {
             className="w-full h-auto md:w-auto md:h-auto md:max-h-[65vh] md:object-contain rounded-card md:rounded-none transition-transform duration-700 ease-brand group-hover:scale-[1.025] shadow-e2 md:shadow-none border border-light-border dark:border-dark-border md:border-none"
           />
         ) : (
-          <div className="mx-6 sm:mx-0 flex flex-col items-center justify-center gap-4 text-center px-6 py-20 md:media-frame md:w-full md:bg-slate-50 md:dark:bg-slate-900/10">
+          <div className="mx-6 sm:mx-0 flex flex-col items-center justify-center gap-4 text-center px-6 py-20 md:media-frame md:w-full md:bg-slate-50 md:dark:bg-dark-bg">
             <span className="icon-tile w-14 h-14 rounded-pill icon-tile-brand">
               <Users className="w-6 h-6" />
             </span>

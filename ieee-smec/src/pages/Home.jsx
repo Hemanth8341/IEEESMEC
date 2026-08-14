@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import {
   ArrowRight, Instagram, Linkedin, Mail, Compass, Cpu, Users, ImageOff,
 } from 'lucide-react'
-import backgroundImage from '../assets/images/landing-image.jpeg'
+import desktopHeroImage from '../assets/images/landing-image.png'
+import mobileHeroImage from '../assets/images/landing-mobile.png'
 
 const EASE = [0.22, 0.61, 0.36, 1]
 
@@ -31,24 +32,24 @@ const features = [
   {
     title: 'Our Direction',
     desc: 'We build a strong technical ecosystem on campus where students learn beyond textbooks and contribute to real technological advancement.',
-    icon: Compass,
+    
   },
   {
     title: 'Our Purpose',
     desc: 'Technical workshops, industry interactions and hands-on projects that nurture leadership, teamwork and problem-solving skills.',
-    icon: Cpu,
+    
   },
   {
     title: 'Our Community',
     desc: 'A collaborative student community where ideas turn into projects and members grow together through mentorship and shared curiosity.',
-    icon: Users,
+    
   },
 ]
 
 const stats = [
   { value: '30+', label: 'Active Members' },
   { value: '2', label: 'Events & Workshops' },
-  { value: '1', label: 'Active Chapters' },
+  { value: '3', label: 'Active Chapters' },
   { value: 'Global', label: 'Professional Network' },
 ]
 
@@ -113,14 +114,15 @@ export default function Home() {
           id="hero"
           className="relative mt-4 sm:mt-6 h-[calc(100svh-140px)] min-h-[520px] flex flex-col overflow-hidden rounded-panel border border-light-border dark:border-dark-border shadow-e3"
         >
+          {/* Desktop Hero Background */}
           <div
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
+            className="hidden sm:block absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${desktopHeroImage})` }}
+          />
+          {/* Mobile Hero Background */}
+          <div
+            className="block sm:hidden absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${mobileHeroImage})` }}
           />
           <div className="hero-scrim z-10" />
 
@@ -150,9 +152,9 @@ export default function Home() {
                 <span className="block text-[0.95em] opacity-80">St. Martin&rsquo;s Engineering College</span>
               </p>
 
-              <h1 className="type-display text-white mb-6 uppercase">
+              <h1 className="type-display text-white mb-6 uppercase dark:[text-shadow:_0_0_30px_rgb(255_255_255_/_30%)]">
                 <span className="block">Advancing</span>
-                <span className="block text-brand-300 min-h-[1.05em]">
+                <span className="block text-brand-300 min-h-[1.05em] dark:[text-shadow:_0_0_30px_var(--tw-colors-brand-400,rgb(65_182_230_/_60%))]">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentWordIndex}
@@ -292,9 +294,11 @@ export default function Home() {
                   variants={itemVariants}
                   className="card card-pad card-interactive flex items-start gap-4"
                 >
-                  <span className="icon-tile icon-tile-brand">
-                    <item.icon className="w-5 h-5" />
-                  </span>
+                  {item.icon && (
+                    <span className="icon-tile icon-tile-brand">
+                      <item.icon className="w-5 h-5" />
+                    </span>
+                  )}
                   <div>
                     <h3 className="type-h3 txt-primary mb-1.5">{item.title}</h3>
                     <p className="type-body-sm txt-secondary">{item.desc}</p>

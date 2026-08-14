@@ -391,9 +391,9 @@
     @apply absolute inset-0 z-0;
     background: linear-gradient(
       180deg,
-      rgb(0 12 22 / 0.62) 0%,
-      rgb(0 12 22 / 0.52) 45%,
-      rgb(0 12 22 / 0.78) 100%
+      rgb(0 12 22 / 0.45) 0%,
+      rgb(0 12 22 / 0.35) 45%,
+      rgb(0 12 22 / 0.65) 100%
     );
   }
 
@@ -409,7 +409,7 @@
 
   .dark .app-grid-bg {
     background-image:
-      radial-gradient(circle at 50% 28%, rgb(65 182 230 / 0.10) 0%, transparent 62%),
+      radial-gradient(circle at 50% 28%, rgb(255 255 255 / 0.03) 0%, transparent 62%),
       linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
     background-size: 100% 100%, 64px 64px, 64px 64px;

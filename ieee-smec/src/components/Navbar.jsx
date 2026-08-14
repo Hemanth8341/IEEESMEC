@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, Sun, Moon, ChevronDown, Users, Building2, Calendar, Image } from 'lucide-react'
+import { Menu, X, Sun, Moon, ChevronDown, Users, Building2, Calendar, Image, BookOpen } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import logo from '../assets/images/ieee-smec-logo.png'
@@ -65,6 +65,7 @@ export default function Navbar() {
   const exploreItems = [
     { title: 'Events', desc: 'Upcoming workshops, seminars and competitions.', to: '/explore', icon: Calendar },
     { title: 'Gallery', desc: 'Photos and highlights from past events.', to: '/gallery', icon: Image },
+    { title: 'Blog', desc: 'Read highlights, reviews and stories from past events.', to: '/blog', icon: BookOpen },
   ]
 
   const links = [
@@ -78,7 +79,7 @@ export default function Navbar() {
     const currentPath = location.pathname
     if (linkName === 'Home') return currentPath === '/'
     if (linkName === 'About Us') return currentPath.startsWith('/about')
-    if (linkName === 'Explore') return currentPath === '/explore' || currentPath === '/gallery'
+    if (linkName === 'Explore') return currentPath === '/explore' || currentPath === '/gallery' || currentPath.startsWith('/blog')
     if (linkName === 'Contact') return currentPath === '/contact'
     return false
   }

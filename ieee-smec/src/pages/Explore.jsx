@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { MapPin, Clock, ChevronDown, CalendarX2, ImageOff, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
 import PageHero from '../components/PageHero'
 
@@ -137,7 +138,7 @@ export default function Explore() {
                       <EventPoster
                         image={event.image}
                         title={event.title}
-                        fit={event.id === 1 ? 'w-full h-auto block md:h-full md:object-contain md:p-1 md:bg-slate-100/50 md:dark:bg-slate-900/50' : 'w-full h-full object-cover'}
+                        fit={event.id === 1 ? 'w-full h-auto block md:h-full md:object-contain md:p-1 md:bg-slate-100/50 md:dark:bg-dark-bg' : 'w-full h-full object-cover'}
                       />
                     </div>
 
@@ -160,10 +161,10 @@ export default function Explore() {
 
                       <div className="mt-6 pt-5 border-t border-light-border dark:border-dark-border">
                         {event.id === 1 ? (
-                          <a href="#" className="btn btn-secondary btn-sm group/cta">
+                          <Link to="/blog/inauguration" className="btn btn-secondary btn-sm group/cta">
                             View Event Details
                             <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
-                          </a>
+                          </Link>
                         ) : (
                           /* Replace href with the Google Form registration link */
                           <a

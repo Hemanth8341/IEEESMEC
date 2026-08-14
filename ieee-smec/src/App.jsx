@@ -8,6 +8,8 @@ import Society from './pages/Society'
 import Explore from './pages/Explore'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -30,6 +32,8 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:postId" element={<BlogPost />} />
         </Routes>
       </AnimatePresence>
     </Layout>

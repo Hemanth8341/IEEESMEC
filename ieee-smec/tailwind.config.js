@@ -38,15 +38,15 @@ export default {
         'light-text-secondary': '#56637A',
         'light-text-muted': '#657084', // AA on both #FFF (5.00) and #EEF2F7 (4.44)
 
-        // ── Dark theme neutrals (IEEE navy) ───────────────────────────────
-        'dark-bg': '#00121F',
-        'dark-surface': '#001E33',
-        'dark-surface-alt': '#002943',
-        'dark-border': '#0B3454',
-        'dark-border-strong': '#14486F',
-        'dark-text-primary': '#F1F6FA',
-        'dark-text-secondary': '#9DB4C8',
-        'dark-text-muted': '#7B94AC', // AA on bg (6.03), surface (5.41) and surface-alt (4.77)
+        // ── Dark theme neutrals (Dark Blue-Black) ───────────────────────────────
+        'dark-bg': '#01050A',
+        'dark-surface': '#030A12',
+        'dark-surface-alt': '#05101A',
+        'dark-border': '#0B1C2D',
+        'dark-border-strong': '#122A42',
+        'dark-text-primary': '#F8FAFC',
+        'dark-text-secondary': '#94A3B8',
+        'dark-text-muted': '#64748B',
 
         // ── State ─────────────────────────────────────────────────────────
         'success': '#16A34A',
