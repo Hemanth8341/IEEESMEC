@@ -562,16 +562,11 @@ export default function BlogPost() {
 
             {/* View Full Photo Gallery CTA Container */}
             <div className="panel panel-pad bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border shadow-e2 flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 border border-brand-500/20">
-                  <Images size={24} />
-                </div>
-                <div>
-                  <h3 className="type-h3 txt-primary">IEEE SMEC Inauguration Gallery</h3>
-                  <p className="type-body-sm txt-secondary mt-1">
-                    Explore all 20 high-resolution photos, moments, and stage highlights from the inauguration ceremony.
-                  </p>
-                </div>
+              <div>
+                <h3 className="type-h3 txt-primary">IEEE SMEC Inauguration Gallery</h3>
+                <p className="type-body-sm txt-secondary mt-1">
+                  Explore all 20 high-resolution photos, moments, and stage highlights from the inauguration ceremony.
+                </p>
               </div>
               <Link
                 to="/gallery?album=inauguration"

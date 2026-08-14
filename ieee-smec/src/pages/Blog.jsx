@@ -11,9 +11,9 @@ const blogPosts = [
     id: 'inauguration',
     title: 'IEEE Student Branch Inauguration',
     subtitle: 'Launching a new era of technology, community, and leadership at SMEC.',
-    excerpt: 'Our student branch officially launched on August 8th, 2026, bringing together distinguished guests, faculty members, and over 150 student delegates for an inspiring day of technical empowerment.',
+    excerpt: 'Our student branch officially launched on August 8th, 2026, bringing together distinguished guests, faculty members, and over 400+ students delegates for an inspiring day of technical empowerment.',
     date: '8th August 2026',
-    readTime: '3 min read',
+    readTime: '5 min read',
     image: '/Event images/Inauguration.png',
     category: 'Milestones',
   }
