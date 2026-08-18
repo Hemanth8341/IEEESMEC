@@ -1,36 +1,42 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { MapPin, Clock, ChevronDown, CalendarX2, ImageOff, ArrowRight } from 'lucide-react'
+import { MapPin, Clock, ChevronDown, CalendarX2, ImageOff, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
 import PageHero from '../components/PageHero'
 
 const EASE = [0.22, 0.61, 0.36, 1]
 
-const events = [
+const upcomingEvents = [
+  {
+    id: 2,
+    title: 'Genesis',
+    month: 'AUG',
+    day: '28',
+    date: '28th August 2026',
+    year: '2026',
+    time: '09:20 am — 4:00 pm',
+    location: 'Sardar Vallabhbhai Patel Auditorium & Labs, SMEC',
+    description:
+      "Genesis 2026 is coming.\nWe could tell you what it's about... but where's the fun in that? 😉\nFor now, all we'll say is this: if you love coming up with ideas, solving real-world problems, and thinking outside the box, you won't want to miss it. Can you guess what's coming? 👀\nRegistrations will open soon — stay tuned!",
+    image: '/Event images/Genesis.png',
+  },
+]
+
+const pastEvents = [
   {
     id: 1,
     title: 'IEEE Student Branch Inauguration',
     month: 'AUG',
     day: '08',
     date: '8th August 2026',
+    year: '2026',
     time: '10:00 am — 12:40 pm',
     location: "Sardar Vallabhbhai Patel Auditorium, SMEC",
     description:
       'Launching a new academic year of innovation, technical excellence and professional growth 2026–2027.',
     image: '/Event images/Inauguration.png',
-  },
-  {
-    id: 2,
-    title: 'Genesis',
-    month: 'AUG',
-    day: '',
-    date: '28th August 2026',
-    time: '09:20 am — 4:00 pm',
-    location: 'Sardar Vallabhbhai Patel Auditorium & Labs, SMEC',
-    description:
-  "Genesis 2026 is coming.\nWe could tell you what it's about... but where's the fun in that? 😉\nFor now, all we'll say is this: if you love coming up with ideas, solving real-world problems, and thinking outside the box, you won't want to miss it. Can you guess what's coming? 👀\nRegistrations will open soon — stay tuned!",
-    image: '/Event images/Genesis.png',
+    link: '/blog/inauguration',
   },
 ]
 
@@ -59,7 +65,8 @@ function EventPoster({ image, title, fit = 'w-full h-full object-cover' }) {
 export default function Explore() {
   const [selectedYear, setSelectedYear] = useState('2026')
 
-  const filteredEvents = events.filter((event) => event.date.includes(selectedYear))
+  const filteredUpcoming = upcomingEvents.filter((event) => event.year === selectedYear)
+  const filteredPast = pastEvents.filter((event) => event.year === selectedYear)
 
   return (
     <PageTransition>
@@ -71,12 +78,14 @@ export default function Explore() {
           image="/Event images/events-banner.webp"
         />
 
-        <div className="max-w-shell mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="max-w-shell mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 flex flex-col gap-12">
+          
+          {/* UPCOMING EVENTS SECTION */}
           <section className="panel panel-pad">
             {/* Toolbar */}
             <div className="flex flex-wrap items-end justify-between gap-5 pb-6 mb-8 border-b border-light-border dark:border-dark-border">
-              <div className="section-head">
-                <span className="type-eyebrow txt-muted">Schedule</span>
+              <div className="section-head text-left">
+                <span className="type-eyebrow txt-brand font-bold uppercase tracking-widest">Schedule</span>
                 <h2 className="type-h2 txt-primary">Upcoming Events</h2>
               </div>
 
@@ -103,20 +112,20 @@ export default function Explore() {
               </div>
             </div>
 
-            {/* List / empty state */}
-            {filteredEvents.length === 0 ? (
+            {/* Upcoming List / empty state */}
+            {filteredUpcoming.length === 0 ? (
               <div className="empty-state">
                 <span className="icon-tile w-14 h-14 rounded-pill icon-tile-neutral">
                   <CalendarX2 className="w-6 h-6" />
                 </span>
                 <p className="type-h3 txt-primary mt-1">We will update further</p>
                 <p className="type-body-sm txt-secondary max-w-[38ch]">
-                  Events for the {selectedYear} academic year will be added in due course.
+                  Upcoming events for the {selectedYear} academic year will be added in due course.
                 </p>
               </div>
             ) : (
               <div className="flex flex-col gap-6">
-                {filteredEvents.map((event, idx) => (
+                {filteredUpcoming.map((event, idx) => (
                   <motion.article
                     key={event.id}
                     initial={{ opacity: 0, y: 16 }}
@@ -126,24 +135,24 @@ export default function Explore() {
                     className="card card-pad card-interactive group flex flex-col md:flex-row gap-6"
                   >
                     {/* Poster */}
-                    <div className={`media-frame relative w-full md:w-[300px] shrink-0 shadow-e1 ${
-                      event.id === 1 ? 'h-auto md:h-[200px]' : 'h-[200px]'
-                    }`}>
-                      <span className="absolute top-3 left-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
-                        <span className="type-eyebrow txt-brand">{event.month}</span>
-                        <span className="font-heading text-base font-bold txt-primary leading-none mt-1">
-                          {event.day}
+                    <div className="media-frame relative w-full md:w-[300px] h-[200px] shrink-0 shadow-e1">
+                      {event.month && (
+                        <span className="absolute top-3 left-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
+                          <span className="type-eyebrow txt-brand">{event.month}</span>
+                          <span className="font-heading text-base font-bold txt-primary leading-none mt-1">
+                            {event.day || '--'}
+                          </span>
                         </span>
-                      </span>
+                      )}
                       <EventPoster
                         image={event.image}
                         title={event.title}
-                        fit={event.id === 1 ? 'w-full h-auto block md:h-full md:object-contain md:p-1 md:bg-slate-100/50 md:dark:bg-dark-bg' : 'w-full h-full object-cover'}
+                        fit="w-full h-full object-cover"
                       />
                     </div>
 
                     {/* Details */}
-                    <div className="flex-1 min-w-0 flex flex-col">
+                    <div className="flex-1 min-w-0 flex flex-col text-left">
                       <h3 className="type-h3 txt-primary">{event.title}</h3>
 
                       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3">
@@ -157,26 +166,18 @@ export default function Explore() {
                         </span>
                       </div>
 
-                      <p className="type-body-sm txt-secondary mt-4">{event.description}</p>
+                      <p className="type-body-sm txt-secondary mt-4 whitespace-pre-line">{event.description}</p>
 
                       <div className="mt-6 pt-5 border-t border-light-border dark:border-dark-border">
-                        {event.id === 1 ? (
-                          <Link to="/blog/inauguration" className="btn btn-secondary btn-sm group/cta">
-                            View Event Details
-                            <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
-                          </Link>
-                        ) : (
-                          /* Replace href with the Google Form registration link */
-                          <a
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-primary btn-sm group/cta"
-                          >
-                            Register Now
-                            <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
-                          </a>
-                        )}
+                        <a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-sm group/cta inline-flex items-center gap-2"
+                        >
+                          Register Now
+                          <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
+                        </a>
                       </div>
                     </div>
                   </motion.article>
@@ -184,6 +185,82 @@ export default function Explore() {
               </div>
             )}
           </section>
+
+          {/* PAST EVENTS SECTION */}
+          <section className="panel panel-pad">
+            <div className="flex flex-wrap items-end justify-between gap-5 pb-6 mb-8 border-b border-light-border dark:border-dark-border">
+              <div className="section-head text-left">
+                <span className="type-eyebrow txt-secondary font-bold uppercase tracking-widest">Archive</span>
+                <h2 className="type-h2 txt-primary">Past Events</h2>
+              </div>
+            </div>
+
+            {filteredPast.length === 0 ? (
+              <div className="empty-state">
+                <p className="type-body-sm txt-secondary">No past events recorded for {selectedYear}.</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-6">
+                {filteredPast.map((event, idx) => (
+                  <motion.article
+                    key={event.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.15 }}
+                    transition={{ duration: 0.5, ease: EASE, delay: idx * 0.08 }}
+                    className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 opacity-95 hover:opacity-100 transition-opacity"
+                  >
+                    {/* Poster */}
+                    <div className="media-frame relative w-full md:w-[300px] shrink-0 shadow-e1 h-auto md:h-[200px]">
+                      <span className="absolute top-3 left-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
+                        <span className="type-eyebrow txt-muted">{event.month}</span>
+                        <span className="font-heading text-base font-bold txt-primary leading-none mt-1">
+                          {event.day}
+                        </span>
+                      </span>
+                      <EventPoster
+                        image={event.image}
+                        title={event.title}
+                        fit="w-full h-auto block md:h-full md:object-contain md:p-1 md:bg-slate-100/50 md:dark:bg-dark-bg"
+                      />
+                    </div>
+
+                    {/* Details */}
+                    <div className="flex-1 min-w-0 flex flex-col text-left">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                          <CheckCircle2 size={12} />
+                          Completed
+                        </span>
+                      </div>
+                      <h3 className="type-h3 txt-primary mt-1">{event.title}</h3>
+
+                      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3">
+                        <span className="inline-flex items-center gap-1.5 type-caption txt-secondary min-w-0">
+                          <MapPin size={14} className="txt-muted shrink-0" />
+                          <span className="truncate">{event.location}</span>
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 type-caption txt-secondary">
+                          <Clock size={14} className="txt-muted shrink-0" />
+                          {event.time}
+                        </span>
+                      </div>
+
+                      <p className="type-body-sm txt-secondary mt-4">{event.description}</p>
+
+                      <div className="mt-6 pt-5 border-t border-light-border dark:border-dark-border flex items-center gap-4">
+                        <Link to={event.link || '/blog/inauguration'} className="btn btn-secondary btn-sm group/cta inline-flex items-center gap-2">
+                          View Event Story & Photos
+                          <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            )}
+          </section>
+
         </div>
       </div>
     </PageTransition>
