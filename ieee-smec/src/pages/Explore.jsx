@@ -12,7 +12,7 @@ const upcomingEvents = [
     id: 2,
     title: 'Genesis',
     month: 'AUG',
-    day: '28',
+    day: '',
     date: '28th August 2026',
     year: '2026',
     time: '09:20 am — 4:00 pm',
