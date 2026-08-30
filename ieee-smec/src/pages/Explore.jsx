@@ -11,7 +11,7 @@ const upcomingEvents = [
   {
     id: 2,
     title: 'Genesis',
-    month: 'AUG',
+    month: 'SEP',
     day: '',
     date: '28th August 2026',
     year: '2026',
