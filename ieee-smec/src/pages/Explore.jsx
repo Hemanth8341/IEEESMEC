@@ -11,14 +11,25 @@ const upcomingEvents = [
   {
     id: 2,
     title: 'Genesis',
-    month: 'SEP',
-    day: '',
-    date: '28th August 2026',
+    month: 'OCT',
+    day: '9',
+    date: '9th October 2026',
     year: '2026',
-    time: '09:20 am — 4:00 pm',
-    location: 'Sardar Vallabhbhai Patel Auditorium & Labs, SMEC',
-    description:
-      "Genesis 2026 is coming.\nWe could tell you what it's about... but where's the fun in that? 😉\nFor now, all we'll say is this: if you love coming up with ideas, solving real-world problems, and thinking outside the box, you won't want to miss it. Can you guess what's coming? 👀\nRegistrations will open soon — stay tuned!",
+    time: '10:00 am — 3:50 pm',
+    location: 'Sardar Vallabhbhai Patel Auditorium, SMEC',
+    description: (
+      <div className="space-y-3">
+        <p>
+          <strong className="font-semibold txt-primary">Genesis 2026</strong> brings students together to think differently, challenge their ideas, and turn them into something extraordinary.
+        </p>
+        <p>
+          No fixed domain. No predefined problem. <strong className="font-semibold txt-primary">Just your idea, your team, and a few hours to make it count.</strong>
+        </p>
+        <p>
+          Join us on <strong className="font-semibold txt-primary">October 9</strong>. Register soon!
+        </p>
+      </div>
+    ),
     image: '/Event images/Genesis.png',
   },
 ]
@@ -166,11 +177,11 @@ export default function Explore() {
                         </span>
                       </div>
 
-                      <p className="type-body-sm txt-secondary mt-4 whitespace-pre-line">{event.description}</p>
+                      <div className="type-body-sm txt-secondary mt-4 whitespace-pre-line">{event.description}</div>
 
                       <div className="mt-6 pt-5 border-t border-light-border dark:border-dark-border">
                         <a
-                          href="#"
+                          href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn btn-primary btn-sm group/cta inline-flex items-center gap-2"

@@ -182,8 +182,8 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-stretch sm:items-center justify-center"
               >
                 <motion.div variants={itemVariants} className="sm:w-auto">
-                  <Link to="/about/society" className="btn btn-primary btn-lg btn-block group">
-                    Explore Societies
+                  <Link to="explore" className="btn btn-primary btn-lg btn-block group">
+                    Explore Events
                     <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
                   </Link>
                 </motion.div>
@@ -214,6 +214,59 @@ export default function Home() {
               />
             </motion.span>
           </button>
+        </section>
+
+        {/* ── LATEST EVENT ───────────────────────────────────────────────── */}
+        <section className="panel-muted panel-pad mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 pb-8 mb-8 border-b border-light-border dark:border-dark-border">
+            <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="section-head">
+              <span className="type-eyebrow txt-muted">Happening now</span>
+              <h2 className="type-h2 txt-primary">Our Upcoming Events</h2>
+              <p className="section-lede">
+                Discover what&rsquo;s happening at IEEE SB SMEC and register for our flagship workshops and hackathons.
+              </p>
+            </motion.div>
+            <Link to="/explore" className="btn btn-secondary btn-sm shrink-0 self-start sm:self-auto">
+              View all events
+            </Link>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="lg:col-span-5 group media-frame w-full h-[260px] sm:h-[340px] shadow-e2">
+              <HomeEventPoster />
+            </div>
+
+            <div className="lg:col-span-7 flex flex-col items-start justify-center">
+              <span className="chip chip-brand">Flagship Ideathon</span>
+              <h3 className="type-h2 txt-primary mt-4">Genesis 2026</h3>
+              <div className="type-body txt-secondary mt-5 space-y-4">
+                <p>
+                  <strong className="font-semibold txt-primary text-lg">It's almost here! 🚀</strong>
+                </p>
+                <p>
+                  You’ve got an idea. A problem worth solving. But what’s the next step?
+                </p>
+                <p>
+                  On <strong className="font-semibold txt-primary">October 9</strong>, Genesis brings students together to think differently, challenge their ideas, and turn them into something extraordinary.
+                </p>
+                <p>
+                  Step up, collaborate, and let's create something awesome!
+                </p>
+                <p className="type-eyebrow text-brand-600 dark:text-brand-400 pt-1">
+                  Save the date — October 9, 2026!
+                </p>
+              </div>
+              <a
+                href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary mt-7 group"
+              >
+                Register Now
+                <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
         </section>
 
         {/* ── MISSION STRIP ──────────────────────────────────────────────── */}
@@ -306,56 +359,6 @@ export default function Home() {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
-        </section>
-
-        {/* ── LATEST EVENT ───────────────────────────────────────────────── */}
-        <section className="panel-muted panel-pad">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 pb-8 mb-8 border-b border-light-border dark:border-dark-border">
-            <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="section-head">
-              <span className="type-eyebrow txt-muted">Happening now</span>
-              <h2 className="type-h2 txt-primary">Our Upcoming Events</h2>
-              <p className="section-lede">
-                Discover what&rsquo;s happening at IEEE SB SMEC and register for our flagship workshops and hackathons.
-              </p>
-            </motion.div>
-            <Link to="/explore" className="btn btn-secondary btn-sm shrink-0 self-start sm:self-auto">
-              View all events
-            </Link>
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            <div className="lg:col-span-5 group media-frame w-full h-[260px] sm:h-[340px] shadow-e2">
-              <HomeEventPoster />
-            </div>
-
-            <div className="lg:col-span-7 flex flex-col items-start">
-              <span className="chip chip-brand">Flagship __e____n</span>
-              <h3 className="type-h2 txt-primary mt-4">Genesis 2026</h3>
-              <p className="type-body txt-secondary mt-4">
-              <strong className="font-semibold txt-primary">Genesis 2026</strong> is coming.
-              <br />
-              We could tell you what it's about... but where's the fun in that? 😉
-              <br />
-              For now, all we'll say is this: if you enjoy solving problems, thinking
-              differently, and building something meaningful, you won't want to miss it. But can you guess what it is ? 😉😁
-              <br />
-              <br />
-              Save the date — <strong className="font-semibold txt-primary"> September 2026</strong>.
-              <br />
-              We'll reveal everything soon, along with registration details and we will update registration link further.
-              </p>
-              {/* Replace href with the Google Form registration link */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary mt-8 group"
-              >
-                Register Now
-                <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
-              </a>
-            </div>
           </div>
         </section>
 
