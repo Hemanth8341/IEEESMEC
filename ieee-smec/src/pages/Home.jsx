@@ -6,6 +6,8 @@ import {
 } from 'lucide-react'
 import desktopHeroImage from '../assets/images/landing-image.png'
 import mobileHeroImage from '../assets/images/landing-mobile.png'
+import genesisLandingBg from '../assets/images/genesislanding1.webp'
+import genesisMobileBg from '../assets/images/genesis-mobile1.webp'
 
 const EASE = [0.22, 0.61, 0.36, 1]
 
@@ -89,13 +91,20 @@ function HomeEventPoster() {
 
 export default function Home() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const wordInterval = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % dynamicWords.length)
     }, 2500)
-    return () => clearInterval(interval)
+    const slideInterval = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev === 0 ? 1 : 0))
+    }, 10000)
+    return () => {
+      clearInterval(wordInterval)
+      clearInterval(slideInterval)
+    }
   }, [])
 
   useEffect(() => {
@@ -114,86 +123,164 @@ export default function Home() {
           id="hero"
           className="relative mt-4 sm:mt-6 h-[calc(100svh-140px)] min-h-[520px] flex flex-col overflow-hidden rounded-panel border border-light-border dark:border-dark-border shadow-e3"
         >
-          {/* Desktop Hero Background */}
+          {/* SLIDE 0: Genesis Promo (Shown First) */}
           <div
-            className="hidden sm:block absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${desktopHeroImage})` }}
-          />
-          {/* Mobile Hero Background */}
-          <div
-            className="block sm:hidden absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${mobileHeroImage})` }}
-          />
-          <div className="hero-scrim z-10" />
+            className={`absolute inset-0 transition-opacity duration-1000 flex flex-col ${
+              currentHeroSlide === 0 ? 'opacity-100 pointer-events-auto z-30' : 'opacity-0 pointer-events-none z-0'
+            }`}
+          >
+            {/* Desktop Hero Background */}
+            <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden bg-black">
+              <div
+                className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-30 scale-105"
+                style={{ backgroundImage: `url(${genesisLandingBg})` }}
+              />
+              <img
+                src={genesisLandingBg}
+                alt="Genesis 2026"
+                className="relative z-10 w-full h-full object-contain object-center select-none"
+              />
+            </div>
+            {/* Mobile Hero Background */}
+            <div
+              className="block sm:hidden absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${genesisMobileBg})` }}
+            />
 
-          {/* Ambient brand glows */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
-            <motion.div
-              animate={{ y: [0, -30, 0], x: [0, 18, 0], scale: [1, 1.05, 1] }}
-              transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-              className="ambient-glow top-10 left-[8%] w-72 h-72 bg-brand-400/25"
-            />
-            <motion.div
-              animate={{ y: [0, 36, 0], x: [0, -22, 0], scale: [1, 1.08, 1] }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-              className="ambient-glow bottom-12 right-[12%] w-[28rem] h-[28rem] bg-brand-500/20"
-            />
+            <div className="relative z-30 flex-grow flex flex-col items-center justify-end px-5 sm:px-8 pb-24 sm:pb-20">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: currentHeroSlide === 0 ? 1 : 0, y: currentHeroSlide === 0 ? 0 : 16 }}
+                transition={{ duration: 0.7, ease: EASE }}
+                className="w-full max-w-4xl flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-center"
+              >
+                <a
+                  href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-lg shadow-xl group"
+                >
+                  Register Now
+                  <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="https://forms.gle/PqVFUbmmZ3mVSXig7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary btn-lg group bg-black/60 hover:bg-black/80 text-white border-white/30 backdrop-blur-md shadow-xl"
+                >
+                  Register as Audience
+                  <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+                </a>
+              </motion.div>
+            </div>
           </div>
 
-          <div className="relative z-30 flex-grow flex flex-col items-center justify-center text-center px-5 sm:px-8 py-12">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="w-full max-w-4xl flex flex-col items-center"
-            >
-              <p className="type-eyebrow text-white/85 mb-5 flex flex-col gap-1.5 items-center">
-                <span className="block">IEEE Student Branch</span>
-                <span className="block text-[0.95em] opacity-80">St. Martin&rsquo;s Engineering College</span>
-              </p>
+          {/* SLIDE 1: Original IEEE SMEC Hero */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-1000 flex flex-col ${
+              currentHeroSlide === 1 ? 'opacity-100 pointer-events-auto z-30' : 'opacity-0 pointer-events-none z-0'
+            }`}
+          >
+            {/* Desktop Hero Background */}
+            <div
+              className="hidden sm:block absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${desktopHeroImage})` }}
+            />
+            {/* Mobile Hero Background */}
+            <div
+              className="block sm:hidden absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${mobileHeroImage})` }}
+            />
+            <div className="hero-scrim z-10" />
 
-              <h1 className="type-display text-white mb-6 uppercase dark:[text-shadow:_0_0_30px_rgb(255_255_255_/_30%)]">
-                <span className="block">Advancing</span>
-                <span className="block text-brand-300 min-h-[1.05em] dark:[text-shadow:_0_0_30px_var(--tw-colors-brand-400,rgb(65_182_230_/_60%))]">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={currentWordIndex}
-                      initial={{ opacity: 0, y: 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -14 }}
-                      transition={{ duration: 0.35, ease: EASE }}
-                      className="inline-block whitespace-nowrap"
-                    >
-                      {dynamicWords[currentWordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-              </h1>
-
-              <p className="type-body-lg text-white/85 max-w-[46ch] mb-9">
-                Join the world&rsquo;s largest technical professional organization and be part of the
-                future of technology innovation.
-              </p>
-
+            {/* Ambient brand glows */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
               <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-stretch sm:items-center justify-center"
+                animate={{ y: [0, -30, 0], x: [0, 18, 0], scale: [1, 1.05, 1] }}
+                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+                className="ambient-glow top-10 left-[8%] w-72 h-72 bg-brand-400/25"
+              />
+              <motion.div
+                animate={{ y: [0, 36, 0], x: [0, -22, 0], scale: [1, 1.08, 1] }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                className="ambient-glow bottom-12 right-[12%] w-[28rem] h-[28rem] bg-brand-500/20"
+              />
+            </div>
+
+            <div className="relative z-30 flex-grow flex flex-col items-center justify-center text-center px-5 sm:px-8 py-12">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: currentHeroSlide === 1 ? 1 : 0, y: currentHeroSlide === 1 ? 0 : 16 }}
+                transition={{ duration: 0.7, ease: EASE }}
+                className="w-full max-w-4xl flex flex-col items-center"
               >
-                <motion.div variants={itemVariants} className="sm:w-auto">
-                  <Link to="explore" className="btn btn-primary btn-lg btn-block group">
-                    Explore Events
-                    <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
-                  </Link>
-                </motion.div>
-                <motion.div variants={itemVariants} className="sm:w-auto">
-                  <button onClick={() => setShowModal(true)} className="btn btn-on-media btn-lg btn-block">
-                    Join IEEE SMEC
-                  </button>
+                <p className="type-eyebrow text-white/85 mb-5 flex flex-col gap-1.5 items-center">
+                  <span className="block">IEEE Student Branch</span>
+                  <span className="block text-[0.95em] opacity-80">St. Martin&rsquo;s Engineering College</span>
+                </p>
+
+                <h1 className="type-display text-white mb-6 uppercase dark:[text-shadow:_0_0_30px_rgb(255_255_255_/_30%)]">
+                  <span className="block">Advancing</span>
+                  <span className="block text-brand-300 min-h-[1.05em] dark:[text-shadow:_0_0_30px_var(--tw-colors-brand-400,rgb(65_182_230_/_60%))]">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={currentWordIndex}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -14 }}
+                        transition={{ duration: 0.35, ease: EASE }}
+                        className="inline-block whitespace-nowrap"
+                      >
+                        {dynamicWords[currentWordIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
+                </h1>
+
+                <p className="type-body-lg text-white/85 max-w-[46ch] mb-9">
+                  Join the world&rsquo;s largest technical professional organization and be part of the
+                  future of technology innovation.
+                </p>
+
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-stretch sm:items-center justify-center"
+                >
+                  <motion.div variants={itemVariants} className="sm:w-auto">
+                    <Link to="explore" className="btn btn-primary btn-lg btn-block group">
+                      Explore Events
+                      <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                  <motion.div variants={itemVariants} className="sm:w-auto">
+                    <button onClick={() => setShowModal(true)} className="btn btn-on-media btn-lg btn-block">
+                      Join IEEE SMEC
+                    </button>
+                  </motion.div>
                 </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
+          </div>
+
+          {/* Carousel indicators */}
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-40 flex gap-2">
+            <button
+              onClick={() => setCurrentHeroSlide(0)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentHeroSlide === 0 ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60 w-2'
+              }`}
+              aria-label="Go to slide 1"
+            />
+            <button
+              onClick={() => setCurrentHeroSlide(1)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentHeroSlide === 1 ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60 w-2'
+              }`}
+              aria-label="Go to slide 2"
+            />
           </div>
 
           {/* Scroll cue */}
@@ -256,15 +343,26 @@ export default function Home() {
                   Save the date — October 9, 2026!
                 </p>
               </div>
-              <a
-                href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary mt-7 group"
-              >
-                Register Now
-                <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
-              </a>
+              <div className="flex flex-wrap items-center gap-4 mt-7">
+                <a
+                  href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary group"
+                >
+                  Register Now
+                  <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="https://forms.gle/PqVFUbmmZ3mVSXig7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary group"
+                >
+                  Register as Audience
+                  <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
+                </a>
+              </div>
             </div>
           </div>
         </section>

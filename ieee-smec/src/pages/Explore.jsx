@@ -180,15 +180,26 @@ export default function Explore() {
                       <div className="type-body-sm txt-secondary mt-4 whitespace-pre-line">{event.description}</div>
 
                       <div className="mt-6 pt-5 border-t border-light-border dark:border-dark-border">
-                        <a
-                          href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-primary btn-sm group/cta inline-flex items-center gap-2"
-                        >
-                          Register Now
-                          <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
-                        </a>
+                        <div className="flex flex-wrap items-center gap-3">
+                          <a
+                            href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary btn-sm group/cta inline-flex items-center gap-2"
+                          >
+                            Register Now
+                            <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
+                          </a>
+                          <a
+                            href="https://forms.gle/PqVFUbmmZ3mVSXig7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-secondary btn-sm group/cta inline-flex items-center gap-2"
+                          >
+                            Register as Audience
+                            <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </motion.article>
