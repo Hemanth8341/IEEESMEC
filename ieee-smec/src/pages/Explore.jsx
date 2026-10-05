@@ -30,7 +30,7 @@ const upcomingEvents = [
         </p>
       </div>
     ),
-    image: '/Event images/Genesis.png',
+    image: '/Event images/genesis-event.webp',
   },
 ]
 
@@ -51,7 +51,7 @@ const pastEvents = [
   },
 ]
 
-function EventPoster({ image, title, fit = 'w-full h-full object-cover' }) {
+function EventPoster({ image, title, fit = 'w-full h-full object-cover object-center select-none' }) {
   const [imgErr, setImgErr] = useState(false)
 
   if (imgErr) {
@@ -64,12 +64,14 @@ function EventPoster({ image, title, fit = 'w-full h-full object-cover' }) {
   }
 
   return (
-    <img
-      src={image}
-      alt={title}
-      onError={() => setImgErr(true)}
-      className={`${fit} transition-transform duration-700 ease-brand group-hover:scale-[1.02]`}
-    />
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-slate-950">
+      <img
+        src={image}
+        alt={title}
+        onError={() => setImgErr(true)}
+        className={fit}
+      />
+    </div>
   )
 }
 
@@ -143,12 +145,12 @@ export default function Explore() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.15 }}
                     transition={{ duration: 0.5, ease: EASE, delay: idx * 0.08 }}
-                    className="card card-pad card-interactive group flex flex-col md:flex-row gap-6"
+                    className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 p-4 sm:p-6"
                   >
                     {/* Poster */}
-                    <div className="media-frame relative w-full md:w-[300px] h-[200px] shrink-0 shadow-e1">
+                    <div className="media-frame relative -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 md:m-0 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] md:w-[420px] lg:w-[460px] aspect-[16/9] shrink-0 shadow-e2 overflow-hidden bg-black flex items-center justify-center rounded-t-panel md:rounded-panel border-b md:border border-light-border dark:border-dark-border">
                       {event.month && (
-                        <span className="absolute top-3 left-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
+                        <span className="absolute top-3 right-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
                           <span className="type-eyebrow txt-brand">{event.month}</span>
                           <span className="font-heading text-base font-bold txt-primary leading-none mt-1">
                             {event.day || '--'}
@@ -158,7 +160,6 @@ export default function Explore() {
                       <EventPoster
                         image={event.image}
                         title={event.title}
-                        fit="w-full h-full object-cover"
                       />
                     </div>
 
@@ -187,7 +188,7 @@ export default function Explore() {
                             rel="noopener noreferrer"
                             className="btn btn-primary btn-sm group/cta inline-flex items-center gap-2"
                           >
-                            Register Now
+                            Register as Team
                             <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover/cta:translate-x-1" />
                           </a>
                           <a
@@ -230,11 +231,11 @@ export default function Explore() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.15 }}
                     transition={{ duration: 0.5, ease: EASE, delay: idx * 0.08 }}
-                    className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 opacity-95 hover:opacity-100 transition-opacity"
+                    className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 opacity-95 hover:opacity-100 transition-opacity p-4 sm:p-6"
                   >
                     {/* Poster */}
-                    <div className="media-frame relative w-full md:w-[300px] shrink-0 shadow-e1 h-auto md:h-[200px]">
-                      <span className="absolute top-3 left-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
+                    <div className="media-frame relative -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 md:m-0 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] md:w-[420px] lg:w-[460px] aspect-[16/9] shrink-0 shadow-e2 overflow-hidden bg-black flex items-center justify-center rounded-t-panel md:rounded-panel border-b md:border border-light-border dark:border-dark-border">
+                      <span className="absolute top-3 right-3 z-20 flex flex-col items-center justify-center px-2.5 py-1.5 rounded-control bg-light-surface/95 dark:bg-dark-surface/95 backdrop-blur-md border border-light-border dark:border-dark-border shadow-e2">
                         <span className="type-eyebrow txt-muted">{event.month}</span>
                         <span className="font-heading text-base font-bold txt-primary leading-none mt-1">
                           {event.day}
@@ -243,7 +244,6 @@ export default function Explore() {
                       <EventPoster
                         image={event.image}
                         title={event.title}
-                        fit="w-full h-auto block md:h-full md:object-contain md:p-1 md:bg-slate-100/50 md:dark:bg-dark-bg"
                       />
                     </div>
 

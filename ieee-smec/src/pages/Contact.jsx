@@ -78,44 +78,39 @@ export default function Contact() {
               },
               {
                 Icon: Mail,
-                title: CONTACT_EMAIL,
+                title: 'Direct Email',
+                email: CONTACT_EMAIL,
                 body: 'Drop us an email for general details, partnership proposals, program details, or certifications.',
-                featured: true,
               },
               {
                 Icon: Handshake,
                 title: 'Collaborate With Us',
                 body: 'Interested in sponsoring or partnering with our Student Branch? Explore collaboration opportunities for events and initiatives.',
               },
-            ].map(({ Icon, title, body, featured }, idx) => (
+            ].map(({ Icon, title, email, body }, idx) => (
               <motion.div
                 key={title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.45, ease: EASE, delay: idx * 0.08 }}
-                className={
-                  featured
-                    ? 'rounded-card border border-brand-700 bg-brand-600 text-white shadow-e3 p-6 sm:p-7 flex flex-col items-start transition-all duration-base ease-brand hover:shadow-e4 hover:-translate-y-1'
-                    : 'card card-interactive p-6 sm:p-7 flex flex-col items-start'
-                }
+                className="card card-interactive p-6 sm:p-7 flex flex-col items-start group"
               >
-                <span
-                  className={`icon-tile w-12 h-12 rounded-pill mb-5 ${
-                    featured ? 'bg-white/15 text-white' : 'icon-tile-brand'
-                  }`}
-                >
+                <span className="icon-tile icon-tile-brand w-12 h-12 rounded-pill mb-5">
                   <Icon size={20} />
                 </span>
-                <h2
-                  className={`font-heading font-bold leading-tight mb-2 w-full ${
-                    featured ? 'text-white text-base truncate' : 'type-h3 txt-primary'
-                  }`}
-                  title={title}
-                >
+                <h2 className="type-h3 txt-primary mb-1">
                   {title}
                 </h2>
-                <p className={`type-body-sm ${featured ? 'text-white/85' : 'txt-secondary'}`}>{body}</p>
+                {email && (
+                  <a
+                    href={`mailto:${email}`}
+                    className="type-body-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline break-all mb-2"
+                  >
+                    {email}
+                  </a>
+                )}
+                <p className="type-body-sm txt-secondary mt-1">{body}</p>
               </motion.div>
             ))}
           </section>

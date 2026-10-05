@@ -80,12 +80,14 @@ function HomeEventPoster() {
   }
 
   return (
-    <img
-      src="/Event images/Genesis.png"
-      alt="Genesis Ideathon"
-      onError={() => setImgErr(true)}
-      className="w-full h-full object-cover transition-transform duration-700 ease-brand group-hover:scale-[1.04]"
-    />
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-slate-950">
+      <img
+        src="/Event images/genesis-event.webp"
+        alt="Genesis Ideathon"
+        onError={() => setImgErr(true)}
+        className="w-full h-full object-cover object-center select-none"
+      />
+    </div>
   )
 }
 
@@ -130,17 +132,10 @@ export default function Home() {
             }`}
           >
             {/* Desktop Hero Background */}
-            <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden bg-black">
-              <div
-                className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-30 scale-105"
-                style={{ backgroundImage: `url(${genesisLandingBg})` }}
-              />
-              <img
-                src={genesisLandingBg}
-                alt="Genesis 2026"
-                className="relative z-10 w-full h-full object-contain object-center select-none"
-              />
-            </div>
+            <div
+              className="hidden sm:block absolute inset-0 z-0 bg-cover bg-[position:center_top] bg-no-repeat"
+              style={{ backgroundImage: `url(${genesisLandingBg})` }}
+            />
             {/* Mobile Hero Background */}
             <div className="block sm:hidden absolute inset-0 z-0 overflow-hidden bg-black">
               <div
@@ -167,7 +162,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-lg shadow-xl group"
                 >
-                  Register Now
+                  Register as Team
                   <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
                 </a>
                 <a
@@ -326,7 +321,7 @@ export default function Home() {
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            <div className="lg:col-span-5 group media-frame w-full h-[260px] sm:h-[340px] shadow-e2">
+            <div className="lg:col-span-5 media-frame w-full aspect-[16/9] shadow-e2 bg-slate-950 flex items-center justify-center overflow-hidden rounded-panel border border-light-border dark:border-dark-border">
               <HomeEventPoster />
             </div>
 
@@ -357,7 +352,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="btn btn-primary group"
                 >
-                  Register Now
+                  Register as Team
                   <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
                 </a>
                 <a
