@@ -142,10 +142,17 @@ export default function Home() {
               />
             </div>
             {/* Mobile Hero Background */}
-            <div
-              className="block sm:hidden absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${genesisMobileBg})` }}
-            />
+            <div className="block sm:hidden absolute inset-0 z-0 overflow-hidden bg-black">
+              <div
+                className="absolute inset-0 bg-cover bg-center filter blur-xl opacity-35 scale-105"
+                style={{ backgroundImage: `url(${genesisMobileBg})` }}
+              />
+              <img
+                src={genesisMobileBg}
+                alt="Genesis 2026 Mobile"
+                className="relative z-10 w-full h-full object-contain object-center select-none"
+              />
+            </div>
 
             <div className="relative z-30 flex-grow flex flex-col items-center justify-end px-5 sm:px-8 pb-24 sm:pb-20">
               <motion.div
