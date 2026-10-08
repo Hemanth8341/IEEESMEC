@@ -101,7 +101,7 @@ export default function Society() {
               className="panel panel-pad"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.12 }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.5, ease: EASE }}
             >
               <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -158,7 +158,7 @@ export default function Society() {
                     className="panel panel-pad"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.12 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.5, ease: EASE }}
                   >
                     <div
@@ -238,7 +238,7 @@ export default function Society() {
                     className="panel panel-pad"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.12 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.5, ease: EASE }}
                   >
                     <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">

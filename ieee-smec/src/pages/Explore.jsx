@@ -143,7 +143,7 @@ export default function Explore() {
                     key={event.id}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.15 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.5, ease: EASE, delay: idx * 0.08 }}
                     className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 p-4 sm:p-6"
                   >
@@ -229,7 +229,7 @@ export default function Explore() {
                     key={event.id}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.15 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.5, ease: EASE, delay: idx * 0.08 }}
                     className="card card-pad card-interactive group flex flex-col md:flex-row gap-6 opacity-95 hover:opacity-100 transition-opacity p-4 sm:p-6"
                   >

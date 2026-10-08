@@ -127,26 +127,6 @@ ieee-smec/
 
 ---
 
-## 🌙 Design System & Typography
-
-- **Headings**: `Outfit` (Modern, bold geometric sans-serif)
-- **Body & Telemetry**: `Inter` (Neutral, highly readable UI font) & `monospace` for telemetry
-- **Color Palette**:
-  - `Primary Navy`: `#00629B` (Light) / `#01050A` (Dark)
-  - `Accent Glow`: `#38BDF8` (Cyan) / `#41B6E6` (Sky Blue)
-  - `IEEE Gold`: `#F5A623`
-
----
-
-## 🚀 Production Build & Deployment
-
-```bash
-npm run build
-```
-Generates a static production bundle in `dist/` ready for Vercel, Netlify, or GitHub Pages.
-
----
-
 ## 📞 Contact
 
 **IEEE Student Branch — St. Martin's Engineering College (SMEC)**

@@ -92,7 +92,7 @@ export default function Contact() {
                 key={title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.45, ease: EASE, delay: idx * 0.08 }}
                 className="card card-interactive p-6 sm:p-7 flex flex-col items-start group"
               >

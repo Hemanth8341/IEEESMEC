@@ -6,9 +6,9 @@ import { motion } from 'framer-motion'
  */
 export default function GradientBg() {
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden bg-light-bg dark:bg-dark-bg" aria-hidden="true">
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-light-bg dark:bg-dark-bg pointer-events-none" aria-hidden="true">
       <motion.div
-        className="absolute inset-0 opacity-60 dark:opacity-70"
+        className="absolute inset-0 opacity-60 dark:opacity-70 pointer-events-none"
         style={{
           background:
             'radial-gradient(60rem 40rem at 15% -10%, rgb(0 130 200 / 0.10), transparent 60%),' +

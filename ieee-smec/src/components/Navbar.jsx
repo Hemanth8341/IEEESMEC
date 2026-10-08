@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Menu, X, Sun, Moon, ChevronDown, Users, Building2, Calendar, Image, BookOpen } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import logo from '../assets/images/ieee-smec-logo.png'
 import logoDark from '../assets/images/IEEE logo 2.png'
 import HeaderPopup from './HeaderPopup'
@@ -13,6 +13,13 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null)
   const [activeMobileDropdown, setActiveMobileDropdown] = useState(null)
   const dropdownTimeoutRef = useRef(null)
+
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 280,
+    damping: 30,
+    restDelta: 0.001,
+  })
 
   const scrollToTopIfHome = () => {
     if (location.pathname === '/') {
@@ -99,6 +106,7 @@ export default function Navbar() {
       variants={navVariants}
       initial="hidden"
       animate="visible"
+      style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
     >
       <div className="max-w-shell mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[72px] sm:h-20">
@@ -128,14 +136,28 @@ export default function Navbar() {
               const isActive = isLinkActive(link.name)
               const linkClasses = `relative px-4 py-2 text-sm font-semibold rounded-pill flex items-center gap-1.5 transition-all duration-base ease-brand ${
                 isActive
-                  ? 'text-brand-600 dark:text-brand-300 bg-brand-600/8 dark:bg-brand-400/10'
-                  : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-brand-600 dark:hover:text-brand-300 hover:bg-light-surface-alt dark:hover:bg-dark-surface-alt'
+                  ? 'text-brand-600 dark:text-cyan-300 bg-sky-500/15 dark:bg-cyan-400/15 shadow-[0_0_16px_rgba(56,189,248,0.22)] border border-sky-500/30 dark:border-cyan-400/35'
+                  : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-brand-600 dark:hover:text-brand-300 hover:bg-light-surface-alt dark:hover:bg-dark-surface-alt border border-transparent'
               }`
+
+              const activeIndicatorNode = isActive ? (
+                <motion.div
+                  layoutId="activeNavIndicator"
+                  className="absolute -top-3 inset-x-0 flex flex-col items-center pointer-events-none z-20"
+                  transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                >
+                  {/* Luminous Light Blue Bulb Filament Bar */}
+                  <div className="w-8 sm:w-10 h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 shadow-[0_0_14px_#38bdf8,0_0_6px_#0284c7,0_0_2px_#ffffff]" />
+                  
+                  {/* Downward Light-Blue Ambient Glow Shine */}
+                  <div className="w-14 sm:w-18 h-7 bg-gradient-to-b from-cyan-400/45 via-sky-500/25 to-transparent blur-sm rounded-full -mt-0.5" />
+                </motion.div>
+              ) : null
 
               return (
                 <div
                   key={link.path}
-                  className="relative"
+                  className="relative flex items-center justify-center"
                   onMouseEnter={() => hasDropdown && handleDropdownEnter(link.name)}
                   onMouseLeave={handleDropdownLeave}
                 >
@@ -145,6 +167,7 @@ export default function Navbar() {
                       onClick={link.path === '/' ? scrollToTopIfHome : undefined}
                       className={linkClasses}
                     >
+                      {activeIndicatorNode}
                       <span>{link.name}</span>
                     </Link>
                   ) : (
@@ -153,20 +176,13 @@ export default function Navbar() {
                       onClick={() => setOpenDropdown(openDropdown === link.name ? null : link.name)}
                       className={linkClasses}
                     >
+                      {activeIndicatorNode}
                       <span>{link.name}</span>
                       <ChevronDown
                         size={14}
                         className={`transition-transform duration-base ease-brand ${openDropdown === link.name ? 'rotate-180' : ''}`}
                       />
                     </button>
-                  )}
-
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeNavIndicator"
-                      className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-pill bg-brand-600 dark:bg-brand-400"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
                   )}
 
                   {hasDropdown && (
@@ -224,10 +240,10 @@ export default function Navbar() {
             const dropdownItemsList = link.name === 'About Us' ? aboutItems : exploreItems
             const isDropdownOpen = activeMobileDropdown === link.name
             const isActive = isLinkActive(link.name)
-            const rowClasses = `w-full flex justify-between items-center py-3 px-4 text-base font-bold rounded-control transition-colors duration-base ease-brand ${
+            const rowClasses = `w-full flex justify-between items-center py-3 px-4 text-base font-bold rounded-control transition-all duration-base ease-brand ${
               isActive
-                ? 'text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-brand-900/30'
-                : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-brand-600 dark:hover:text-brand-300 hover:bg-brand-50/50 dark:hover:bg-brand-900/10'
+                ? 'text-brand-600 dark:text-cyan-300 bg-sky-500/10 dark:bg-cyan-400/15 border-l-4 border-cyan-400 shadow-[0_0_14px_rgba(56,189,248,0.18)]'
+                : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-brand-600 dark:hover:text-brand-300 hover:bg-brand-50/50 dark:hover:bg-brand-900/10 border-l-4 border-transparent'
             }`
 
               return (
@@ -317,6 +333,12 @@ export default function Navbar() {
           />
         )}
       </AnimatePresence>
+
+      {/* Live Dynamic Scroll Progress Indicator */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-brand-600 via-cyan-400 to-sky-300 origin-left shadow-[0_0_8px_rgba(56,189,248,0.6)] z-50 pointer-events-none"
+        style={{ scaleX }}
+      />
     </motion.nav>
   )
 }

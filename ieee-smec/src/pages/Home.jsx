@@ -21,11 +21,11 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 }
 
-// Shared reveal props so every section animates identically
+// Shared reveal props so every section animates cleanly without iPhone scroll jitter
 const reveal = {
   initial: { opacity: 0, y: 16 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: false, amount: 0.15 },
+  viewport: { once: true, amount: 0.05 },
 }
 
 const dynamicWords = ['SMEC', 'Innovation', 'Technology', 'Engineering']
@@ -306,24 +306,34 @@ export default function Home() {
         </section>
 
         {/* ── LATEST EVENT ───────────────────────────────────────────────── */}
-        <section className="panel-muted panel-pad mb-8">
+        <motion.section
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.65, ease: EASE }}
+          className="panel-muted panel-pad mb-8"
+        >
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 pb-8 mb-8 border-b border-light-border dark:border-dark-border">
-            <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="section-head">
+            <div className="section-head">
               <span className="type-eyebrow txt-muted">Happening now</span>
               <h2 className="type-h2 txt-primary">Our Upcoming Events</h2>
               <p className="section-lede">
                 Discover what&rsquo;s happening at IEEE SB SMEC and register for our flagship workshops and hackathons.
               </p>
-            </motion.div>
+            </div>
             <Link to="/explore" className="btn btn-secondary btn-sm shrink-0 self-start sm:self-auto">
               View all events
             </Link>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            <div className="lg:col-span-5 media-frame w-full aspect-[16/9] shadow-e2 bg-slate-950 flex items-center justify-center overflow-hidden rounded-panel border border-light-border dark:border-dark-border">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="lg:col-span-5 media-frame w-full aspect-[16/9] shadow-e2 bg-slate-950 flex items-center justify-center overflow-hidden rounded-panel border border-light-border dark:border-dark-border"
+            >
               <HomeEventPoster />
-            </div>
+            </motion.div>
 
             <div className="lg:col-span-7 flex flex-col items-start justify-center">
               <span className="chip chip-brand">Flagship Ideathon</span>
@@ -350,7 +360,7 @@ export default function Home() {
                   href="https://forms.gle/Gjm5LzcJQSPUyZsw8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary group"
+                  className="btn btn-primary group shadow-e2"
                 >
                   Register as Team
                   <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
@@ -367,28 +377,42 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ── MISSION STRIP ──────────────────────────────────────────────── */}
-        <section id="ieee-intro" className="panel panel-pad-sm">
-          <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="max-w-3xl mx-auto text-center">
+        <motion.section
+          id="ieee-intro"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="panel panel-pad-sm"
+        >
+          <div className="max-w-3xl mx-auto text-center">
             <p className="type-h3 txt-brand mb-3">Advancing technology for the benefit of humanity.</p>
             <p className="type-body txt-secondary">
               IEEE is the world&rsquo;s largest technical professional organization dedicated to advancing
               technology for the benefit of humanity, and IEEE SB SMEC brings that mission to campus.
             </p>
-          </motion.div>
-        </section>
+          </div>
+        </motion.section>
 
         {/* ── WHY IEEE SB SMEC ───────────────────────────────────────────── */}
-        <section id="why-choose" className="panel panel-pad">
+        <motion.section
+          id="why-choose"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.65, ease: EASE }}
+          className="panel panel-pad"
+        >
           <div className="ambient-glow top-1/3 left-[4%] w-72 h-72 bg-brand-400/8" />
           <div className="ambient-glow bottom-0 right-[8%] w-64 h-64 bg-brand-500/8" />
 
           <div className="relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Left */}
             <div className="flex flex-col gap-8">
-              <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="section-head">
+              <div className="section-head">
                 <span className="type-eyebrow txt-muted">Why join us</span>
                 <h2 className="type-h2 txt-primary">
                   The launchpad for your{' '}
@@ -399,18 +423,24 @@ export default function Home() {
                   individuals unlock their full potential. Build career skills, expand your network, and shape
                   exciting initiatives from the ground up.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Stats */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 className="grid grid-cols-2 gap-3 sm:gap-4"
               >
                 {stats.map((stat) => (
-                  <motion.div key={stat.label} variants={itemVariants} className="card card-pad">
+                  <motion.div
+                    key={stat.label}
+                    variants={itemVariants}
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    transition={{ duration: 0.25 }}
+                    className="card card-pad shadow-e1 hover:shadow-e2"
+                  >
                     <p className="type-h2 txt-brand leading-none">{stat.value}</p>
                     <p className="type-eyebrow txt-muted mt-2.5">{stat.label}</p>
                   </motion.div>
@@ -438,13 +468,15 @@ export default function Home() {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.15 }}
               className="flex flex-col gap-4"
             >
               {features.map((item) => (
                 <motion.div
                   key={item.title}
                   variants={itemVariants}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.25 }}
                   className="card card-pad card-interactive flex items-start gap-4"
                 >
                   {item.icon && (
@@ -460,14 +492,20 @@ export default function Home() {
               ))}
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ── GETTING STARTED ────────────────────────────────────────────── */}
-        <section className="panel panel-pad">
-          <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="section-head items-center text-center mb-12">
+        <motion.section
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.65, ease: EASE }}
+          className="panel panel-pad"
+        >
+          <div className="section-head items-center text-center mb-12">
             <span className="type-eyebrow txt-muted">Get started</span>
             <h2 className="type-h2 txt-primary">Getting involved is as easy as 1-2-3</h2>
-          </motion.div>
+          </div>
 
           <div className="relative grid sm:grid-cols-3 gap-10 sm:gap-8">
             <div
@@ -477,11 +515,14 @@ export default function Home() {
             {steps.map((step, idx) => (
               <motion.div
                 key={step.n}
-                {...reveal}
-                transition={{ duration: 0.5, ease: EASE, delay: idx * 0.1 }}
-                className="relative flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, ease: EASE, delay: idx * 0.12 }}
+                whileHover={{ y: -5 }}
+                className="relative flex flex-col items-center text-center group"
               >
-                <span className="relative z-10 w-14 h-14 rounded-pill flex items-center justify-center mb-5 font-heading font-bold text-base bg-light-surface dark:bg-dark-surface border-2 border-brand-600 dark:border-brand-400 txt-brand shadow-e1">
+                <span className="relative z-10 w-14 h-14 rounded-pill flex items-center justify-center mb-5 font-heading font-bold text-base bg-light-surface dark:bg-dark-surface border-2 border-brand-600 dark:border-brand-400 txt-brand shadow-e1 group-hover:shadow-[0_0_15px_rgba(0,130,200,0.35)] transition-all duration-base ease-brand">
                   {step.n}
                 </span>
                 <h3 className="type-h3 txt-primary mb-2">{step.title}</h3>
@@ -489,12 +530,19 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* ── CTA ────────────────────────────────────────────────────────── */}
-        <section id="contact" className="panel panel-pad text-center">
+        <motion.section
+          id="contact"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: EASE }}
+          className="panel panel-pad text-center"
+        >
           <div className="ambient-glow -top-10 left-1/2 -translate-x-1/2 w-[32rem] h-64 bg-brand-500/8" />
-          <motion.div {...reveal} transition={{ duration: 0.5, ease: EASE }} className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-5">
+          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-5">
             <h2 className="type-h1 txt-primary">
               Ready to <span className="txt-brand">join IEEE?</span>
             </h2>
@@ -502,7 +550,7 @@ export default function Home() {
               Become part of our vibrant community and accelerate your professional journey in technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-2">
-              <Link to="/contact" className="btn btn-primary group">
+              <Link to="/contact" className="btn btn-primary group shadow-e2">
                 Contact Us
                 <ArrowRight className="w-4 h-4 transition-transform duration-base ease-brand group-hover:translate-x-1" />
               </Link>
@@ -510,8 +558,8 @@ export default function Home() {
                 Learn More
               </Link>
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </motion.section>
       </div>
 
       {/* ── Join modal ───────────────────────────────────────────────────── */}

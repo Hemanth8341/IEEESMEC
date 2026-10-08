@@ -1,3 +1,23 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build outputs
+dist
+dist-ssr
+build
+out
+
+# Local Environment & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+!.env.example
+
 # Logs
 logs
 *.log
@@ -7,19 +27,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Cache directories
+.vite
+.cache
+.turbo
+.parcel-cache
 
-# Editor directories and files
-.env
-.env.local
-.env.*.local
-
-.vscode/*
-!.vscode/extensions.json
-.idea
+# OS & Editor
 .DS_Store
+Thumbs.db
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 *.suo
 *.ntvs*
 *.njsproj
